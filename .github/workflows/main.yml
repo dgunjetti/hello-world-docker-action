@@ -5,14 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-    - uses: ./
+    - uses: actions/checkout@v1
     - name: Hello world action step
       id: hello
-      uses: actions/hello-world-docker-action@master
+      uses: ./.github/actions/hello-world-docker-action
       with:
         who-to-greet: 'Mona the Octocat'
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
-    - name: One Click Docker
-      uses: pangzineng/Github-Action-One-Click-Docker@v1.1.1
