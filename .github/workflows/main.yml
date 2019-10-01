@@ -7,9 +7,15 @@ jobs:
     steps:
     - name: Hello world action step
       id: hello
-      uses: actions/hello-world-docker-action@v1
+      uses: ./
       with:
         who-to-greet: 'Mona the Octocat'
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
+    - name: Publish to Registry
+      uses: ./
+      with:
+        name:  hub.docker.com/dgunjetti
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
